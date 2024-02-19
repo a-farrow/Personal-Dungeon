@@ -14,7 +14,7 @@ namespace DungeonLibrary
         private string _name;
         private int _bonusHitChance;
         private bool _isTwoHanded;
-        private WeaponType _type;
+        
 
 
 
@@ -44,25 +44,25 @@ namespace DungeonLibrary
             get { return _isTwoHanded; }
             set { _isTwoHanded = value; }
         }
-        public WeaponType Type
-        {
-            get { return _type; }
-            set { _type = value; }
-        }
+        
 
         //CONSTRUCTORS
-        public Weapon(string name, int minDamage, int maxDamage, int bonusHitChance, bool isTwoHanded, WeaponType type)
+        public Weapon(string name, int minDamage, int maxDamage, int bonusHitChance, bool isTwoHanded)
         {
             if (minDamage >= maxDamage)
             {
                 throw new ArgumentException("Min Damage must be less than max damage.");
+            }
+            else if (maxDamage > 75)
+            {
+                throw new ArgumentException("The max-damage must be lower then or equal to 75.");
             }
             MinDamage = minDamage;
             MaxDamage = maxDamage;
             Name = name;
             BonusHitChance = bonusHitChance;
             IsTwoHanded = isTwoHanded;
-            Type = type;
+            
         }
 
 
@@ -72,8 +72,8 @@ namespace DungeonLibrary
             //return base.ToString();
             return $"{Name}\n" +
                    $"Damage: {MinDamage} - {MaxDamage}\n" +
-                   $"Bonus Hit: {BonusHitChance}%\n" +
-                   $"{(IsTwoHanded ? "Two" : "One")}-Handed {Type}";
+                   //$"Bonus Hit: {BonusHitChance}%\n" +
+                   $"{(IsTwoHanded ? "Two" : "One")}-Handed";
         }
     }
 }

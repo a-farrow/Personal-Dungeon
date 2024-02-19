@@ -1,6 +1,6 @@
 ﻿namespace DungeonLibrary
 {
-    public class Character
+    public abstract class Character
     {
         //FIELDS
         private string _name = null!;
@@ -49,11 +49,11 @@
             set { _dodge = value; }
         }
         //CONSTRUCTORS
-        public Character(string name, int hitChance, int dodge, int maxLife)
+        public Character(string playerName, int hitChance, int dodge, int maxLife)
         {
             // we did not account for Life in the parameter list because we're going to assign it manually
             //Property
-            Name = name;
+            Name = playerName;
             HitChance = hitChance;
             Dodge = dodge;
             MaxLife = maxLife;
@@ -79,14 +79,11 @@
             return Dodge;
         }
 
-        public int CalcHitChance()
+        public virtual int CalcHitChance()
         {
             return HitChance;
         }
 
-        public int CalcDamage()
-        {
-            return 0;
-        }
+        public abstract int CalcDamage();
     }
 }
